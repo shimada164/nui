@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINE QR Code Snippet</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Serif JP', serif;
+            background-color: #F8FBFF; /* 背景色 */
+            color: #34495e; /* 基本テキスト色 */
+        }
+        
+        .btn-mint {
+            background-color: #7BC4B0; 
+            box-shadow: 0 4px 14px 0 rgba(123, 196, 176, 0.39);
+        }
+        .btn-mint:hover {
+            background-color: #63B3A5; /* ホバー時の色 */
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl border max-w-2xl w-full">
+        
+
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="text-center">
+                <img src="https://nimble-sunburst-26786d.netlify.app/image/line-qr.jpg" alt="LINE QR Code" class="mx-auto mb-4 rounded-lg w-48 h-48">
+                <p class="font-bold">QRコードで追加</p>
+            </div>
+            <div class="text-left space-y-4 md:space-y-8 flex flex-col justify-center">
+                <!-- IDで検索 Section Removed -->
+                <div>
+                    <h4 class="font-bold mb-1">ボタンから追加</h4>
+                    <a href="https://lin.ee/FwmU1q4" class="btn-mint inline-block text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:scale-105">
+                        NUINUIを追加する
+                    </a>
+                </div>
+            </div>
+        <div class="mt-6 border-t pt-6">
+            <p class="text-sm text-gray-700 leading-relaxed">
+                <strong class="font-bold text-red-600">予約は完了していません。</strong>LINEでやり取り後に正式に決定となります。お手数をおかけしますが、LINEで友だちの追加後にメッセージをお願い致します。
+            </p>
+        </div>
+        <div class="mt-6 flex justify-end">
+            <a href="/index.html" class="text-sm text-gray-500 hover:text-gray-800 transition-colors duration-300">
+                webサイトに戻る &rarr;
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
