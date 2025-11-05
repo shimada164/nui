@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUINUI Personal Training | 出張型パーソナルトレーニング</title>
+    <!-- Chosen Palette: Main: #6B9BD1 (Soft Blue), Accent: #7BC4B0 (Adjusted Mint), Text: #34495e (Dark Gray), Light BG: #F8FBFF -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/phosphor-icons" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Serif JP', serif;
+            background-color: #F8FBFF;
+            color: #34495e;
+        }
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px) scale(0.97);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        #header.header-transparent {
+            background-color: transparent;
+        }
+        #header.header-scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        .section-title {
+            font-weight: 700;
+            color: #6B9BD1;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+
+        .collapsible-content.expanded {
+             max-height: 4000px; /* Adjust as needed for long content */
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+        .accordion-item .accordion-trigger { /* Add specific style for trigger */
+            padding-bottom: 1rem; /* Adjust as needed, equal to original pb-4 */
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 2500px; /* Adjust as needed */
+            padding-top: 1.5rem; /* Space between intro and main text */
+            padding-bottom: 1rem; /* Add padding at the bottom */
+        }
+        .accordion-item.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-item .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 1rem;
+        }
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Updated Button Color */
+        .btn-mint {
+            background-color: #7BC4B0; /* Changed from #98D8C8 */
+            box-shadow: 0 4px 14px 0 rgba(123, 196, 176, 0.39); /* Adjusted shadow color slightly */
+        }
+        .btn-mint:hover {
+            background-color: #63B3A5; /* Darker shade for hover */
+        }
+
+        /* SuperSaaS Widget Container */
+        .supersaas-widget-container iframe {
+             width: 100%;
+             height: 700px;
+             border: none;
+             border-radius: 1rem; /* rounded-2xl equivalent */
+             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+        }
+
+        /* Custom Separator */
+        .custom-separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0; /* Adjust spacing as needed */
+        }
+        .custom-separator::before,
+        .custom-separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #98D8C8; /* Original Accent color for line */
+        }
+        .custom-separator:not(:empty)::before {
+            margin-right: .5em;
+        }
+        .custom-separator:not(:empty)::after {
+            margin-left: .5em;
+        }
+        .custom-separator-icon {
+            color: #98D8C8; /* Original Accent color for icon */
+            font-size: 1.2em; /* Adjust size */
+            line-height: 1;
+        }
+
+        /* Text Highlight Style */
+        .text-highlight {
+            background: linear-gradient(transparent 60%, #98D8C8 60%); /* Apply highlight */
+            padding: 0 0.1em; /* Add slight horizontal padding */
+            margin: 0 -0.1em; /* Adjust margin to prevent layout shift */
+        }
+
+
+    </style>
+</head>
+<body class="antialiased text-gray-700">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 header-transparent">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="font-montserrat text-xl font-bold" style="color: #6B9BD1;">NUINUI Personal Training</a>
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#reasons" class="text-gray-600 hover:text-[#6B9BD1] font-medium nav-link">コンセプト</a>
+                <a href="#trainer" class="text-gray-600 hover:text-[#6B9BD1] font-medium nav-link">トレーナー紹介</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-[#6B9BD1] font-medium nav-link">お客様の声</a>
+                <a href="#faq" class="text-gray-600 hover:text-[#6B9BD1] font-medium nav-link">よくある質問</a>
+                <a href="#contact" class="btn-mint text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105 nav-link">無料相談・予約</a>
+            </nav>
+            <!-- Mobile Nav Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="z-50 relative focus:outline-none" style="color: #6B9BD1;">
+                    <svg id="menu-open-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <svg id="menu-close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-full bg-white z-40 md:hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8 pt-16">
+            <a href="#reasons" class="text-2xl text-gray-700 hover:text-[#6B9BD1] mobile-nav-link nav-link">コンセプト</a>
+            <a href="#trainer" class="text-2xl text-gray-700 hover:text-[#6B9BD1] mobile-nav-link nav-link">トレーナー紹介</a>
+            <a href="#services" class="text-2xl text-gray-700 hover:text-[#6B9BD1] mobile-nav-link nav-link">サービス・料金</a>
+            <a href="#testimonials" class="text-2xl text-gray-700 hover:text-[#6B9BD1] mobile-nav-link nav-link">お客様の声</a>
+            <a href="#faq" class="text-2xl text-gray-700 hover:text-[#6B9BD1] mobile-nav-link nav-link">よくある質問</a>
+            <a href="#contact" class="btn-mint text-white font-bold py-3 px-8 rounded-full transition-colors text-xl mobile-nav-link nav-link">無料相談・予約</a>
+        </div>
+    </div>
+
+    <main>
+        <!-- Home / Hero Section -->
+        <section id="home" class="w-full h-screen flex items-center justify-center">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Image Column -->
+                    <div class="fade-in order-first md:order-last">
+                        <div class="relative rounded-2xl shadow-xl overflow-hidden">
+                            <img src="https://nimble-sunburst-26786d.netlify.app/image/top.jpg" alt="トレーニング風景" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#6B9BD1] to-transparent opacity-30"></div>
+                        </div>
+                    </div>
+                    <!-- Text Column -->
+                    <div class="text-center md:text-left fade-in" style="transition-delay: 200ms;">
+                        <h1 class="font-bold mb-4" style="font-size: 1.2rem; line-height: 1.7; color: #34495e;">
+                            ただ痩せるだけじゃない。<br>
+                            一生ものの<span class="text-highlight">「健康的な美しさ」</span>を<br>手に入れる。<br> <!-- Removed inline style, added class -->
+                            人生ずっと楽しめる身体に。
+                        </h1>
+                        <p class="font-bold mb-4 text-gray-700" style="font-size: 1.4rem;">NUINUI Personal Training</p>
+                        <p class="mb-10" style="font-size: 0.8rem; line-height: 1.7;">
+                            あなたのこの先の人生に<br>
+                            笑顔を増やしていきたい、<br>
+                            そんな思いを軸にして動いている<br>
+                            パーソナルトレーナー
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                            <a href="#contact" class="btn-mint text-white font-bold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 w-full sm:w-auto">まずは気軽に相談してみる</a>
+                            <a href="#services" class="bg-transparent border-2 text-gray-700 font-bold py-3 px-8 rounded-full hover:bg-gray-700 hover:text-white transition-colors duration-300 w-full sm:w-auto" style="border-color: #6B9BD1; color: #6B9BD1;">サービス・料金を確認する</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reasons Section -->
+        <section id="reasons" class="py-20 md:py-28 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="section-title text-xl md:text-4xl">【NUINUI Personal Training】が<br class="sm:hidden">選ばれる理由</h2>
+                </div>
+                <div class="space-y-4">
+                    <!-- Reason 1 -->
+                     <div class="accordion-item border-b fade-in relative">
+                        <span class="absolute top-0 left-0 text-4xl font-bold font-montserrat opacity-50 pt-1" style="color: #7BC4B0;">01</span>
+                        <div class="accordion-trigger flex justify-between items-center cursor-pointer pl-16">
+                            <div class="flex-grow">
+                                <div>
+                                    <h3 class="text-xl font-bold text-[#6B9BD1] mb-2">完全出張型のトレーニング＋加圧トレーニングと整体</h3>
+                                    <p class="text-gray-600 text-sm leading-relaxed pb-4">「行くのがめんどくさい」「人が多い場所は苦手」——そんな気持ち、すごくわかります。<br>だからこそ、私があなたのもとへ行き、安心して動ける空間をつくります。<br>“あなたらしく続けられるトレーニング”が、ここから始まります。</p>
+                                </div>
+                            </div>
+                            <div class="accordion-arrow text-2xl text-[#6B9BD1] transform transition-transform duration-300 ml-4 self-start pt-1">↓</div>
+                        </div>
+                        <div class="accordion-content pl-16">
+                            <p class="text-gray-600 text-sm leading-relaxed mb-8">
+                                「ジムに行く時間がない」「人が多い場所は落ち着かない」「外に出るのが億劫」——そんな悩みをすべて解決。<br>
+                                NUINUIでは、トレーニング・整体・ストレッチに加え、加圧トレーニングを出張でご提供します。<br>
+                                マシンがなくても、専用ベルトを使用することで効率的に身体へアプローチが可能。<br>
+                                自宅でも、安心して本格的なトレーニングを受けられます。
+                            </p>
+                             <p class="text-xs text-gray-500 mb-8 px-4 py-2 border border-gray-200 rounded-lg inline-block">※加圧トレーニングは希望制です。お身体の状態を確認し、必要に応じて安全に導入します。</p>
+                            <div class="grid md:grid-cols-2 gap-12 items-center">
+                                 <div class="text-left">
+                                    <h3 class="text-2xl font-bold text-[#6B9BD1] mb-4">加圧トレーニング</h3>
+                                    <p class="text-gray-600 text-sm leading-relaxed">
+                                        加圧トレーニングは、腕や脚の付け根に専用のベルトで適切な圧をかけ、血流をコントロールしながら行う科学的根拠に基づいたトレーニング法です。脳と筋肉に「高強度の運動をしている」と錯覚させることで、軽い負荷・短時間でも高い効果を引き出すことができ、筋力アップやボディメイクはもちろん、脂肪燃焼・代謝向上・アンチエイジングなど多方面に働きかけます。<br><br>特に注目すべきは、加圧によって分泌が促される成長ホルモンです。通常のトレーニングの約200倍とも言われる分泌が期待でき、筋肉の合成や脂肪の分解、美肌や細胞の修復といった身体の再生・若返り効果にも大きく関わります。<br><br>NUINUIでは、圧力や脈の変化を「オシロスコープ」という波形モニターで常に可視化し、状態を正確に把握しながら一人ひとりに最適な圧を精密にコントロールしています。この丁寧な管理により、安全性を高めつつ最大限の効果を引き出すことが可能です。ハードな筋トレが苦手な方や初心者でも、安心して継続でき、身体が本来持つ力を最大限に引き出しながら理想の自分へと近づいていけます。
+                                    </p>
+                                </div>
+                                <div class="max-h-[450px] overflow-hidden rounded-2xl shadow-xl">
+                                    <img src="https://nimble-sunburst-26786d.netlify.app/image/kaatsu.jpg" alt="加圧トレーニングのイメージ" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Reason 2 -->
+                     <div class="accordion-item border-b fade-in relative">
+                         <span class="absolute top-0 left-0 text-4xl font-bold font-montserrat opacity-50 pt-1" style="color: #7BC4B0;">02</span>
+                        <div class="accordion-trigger flex justify-between items-center cursor-pointer pl-16">
+                             <div class="flex-grow">
+                                <div>
+                                    <h3 class="text-xl font-bold text-[#6B9BD1] mb-2">あなただけの完全オーダーメイドプログラム</h3>
+                                    <p class="text-gray-600 text-sm leading-relaxed pb-4">「頑張っているのに、思うような変化が出ない…」<br>それは、あなたの身体に合っていない方法を続けているだけかもしれません。<br>NUINUIでは、解剖学・機能生理学・神経学の観点から、<br>ひとりひとりの身体に“今”必要なアプローチを見つけていきます。</p>
+                                </div>
+                            </div>
+                            <div class="accordion-arrow text-2xl text-[#6B9BD1] transform transition-transform duration-300 ml-4 self-start pt-1">↓</div>
+                        </div>
+                        <div class="accordion-content pl-16">
+                            <p class="text-gray-600 text-sm leading-relaxed mb-8">
+                               骨格や神経の働き、体の反応を見ながら、その日の状態に合わせた最適なプランを組み立てます。<br>
+                               「なぜその動きをするのか」を理解しながら、身体が自然と動きやすくなる感覚を育てていきます。<br>
+                               トレーニング（運動）とコンディショニング（手技やストレッチ）を組み合わせ、<br>
+                               脳と身体のつながりを整えながら、機能的で美しい動きを身につけていきます。
+                            </p>
+                            <div class="overflow-hidden rounded-2xl shadow-xl aspect-video">
+                                 <img src="https://nimble-sunburst-26786d.netlify.app/image/154562_0.jpg" alt="オーダーメイドプログラムの作成風景" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/F8F9FA/333333?text=Image';">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Reason 3 -->
+                     <div class="accordion-item border-b fade-in relative">
+                         <span class="absolute top-0 left-0 text-4xl font-bold font-montserrat opacity-50 pt-1" style="color: #7BC4B0;">03</span>
+                        <div class="accordion-trigger flex justify-between items-center cursor-pointer pl-16">
+                           <div class="flex-grow">
+                                <div>
+                                    <h3 class="text-xl font-bold text-[#6B9BD1] mb-2">常に行うカウンセリングで身体の変化を感じ、導く</h3>
+                                    <p class="text-gray-600 text-sm leading-relaxed pb-4">「トレーニングを続けても、モチベーションが保てない」<br>そんな時こそ、自分の“変化”に気づくことが大切です。<br>NUINUIでは、毎回のセッションでカウンセリングを行い、<br>“どうなりたいか”を一緒に整理していきます。</p>
+                                </div>
+                            </div>
+                             <div class="accordion-arrow text-2xl text-[#6B9BD1] transform transition-transform duration-300 ml-4 self-start pt-1">↓</div>
+                        </div>
+                        <div class="accordion-content pl-16">
+                            <p class="text-gray-600 text-sm leading-relaxed mb-8">
+                                身体の状態だけでなく、あなたの気持ちや目的に寄り添いながら進めていきます。<br>
+                                考えや目標は日々変化していくもの。<br>
+                                その時の体調や心の状態に合わせてメニューを組み立てるため、内容も毎回異なります。<br>
+                                一緒に整理しながら、自分の変化を実感できるようサポートします。<br>
+                                「できた」「変わった」を積み重ねながら、理想の自分へ。
+                            </p>
+                             <div class="overflow-hidden rounded-2xl shadow-xl aspect-video">
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/154565_0.jpg" alt="カウンセリング風景" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/F8F9FA/333333?text=Image';">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trainer Section -->
+        <section id="trainer" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6">
+                <div id="concept" class="max-w-5xl mx-auto">
+                    <!-- Top Block -->
+                    <div class="grid md:grid-cols-3 gap-8 items-center mb-12 fade-in">
+                        <!-- Image -->
+                        <div class="md:col-span-1 max-w-[70%] mx-auto md:max-w-full">
+                            <img src="https://nimble-sunburst-26786d.netlify.app/image/profile.png" alt="Trainer Nuinui" class="rounded-2xl shadow-xl w-full" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1577221084712-45b044c7010a?q=80&w=1948&auto=format&fit=crop';">
+                        </div>
+                        <!-- Details -->
+                        <div class="md:col-span-2 text-left bg-white p-8 rounded-2xl shadow-lg">
+                            <h3 class="text-3xl font-bold text-[#6B9BD1]">ぬいぬい</h3>
+                            <p class="text-gray-500 mb-6">【NUINUI Personal Training】代表</p>
+                            <div class="border-t pt-6">
+                                 <h4 class="text-lg font-bold text-[#6B9BD1] mb-4 flex items-center">
+                                    <span class="mr-2 text-xl">📄</span> 経歴・資格
+                                 </h4>
+                                 <div class="flex flex-wrap gap-2">
+                                    <span class="text-sm font-medium px-3 py-1 rounded-full" style="background-color: #E8F4F8; color: #5A8BC4;">トレーナー歴8年</span>
+                                    <span class="text-sm font-medium px-3 py-1 rounded-full" style="background-color: #E8F4F8; color: #5A8BC4;">加圧インストラクター(加圧JAPAN)</span>
+                                    <span class="text-sm font-medium px-3 py-1 rounded-full" style="background-color: #E8F4F8; color: #5A8BC4;">他様々な資格を保有(ストレッチ・エクササイズ等)</span>
+                                 </div>
+                                 <p class="mt-4 text-sm text-gray-600">
+                                    12年バスケットボール経験があり、全国4位/8位、国体代表/北信越代表/U-16/オールジャパン代表/日本代表予選最終選考等、他陸上競技など人生の半分以上運動経験があります。<br>
+                                    にも関わらず、身体は特に機能的ではないし、姿勢が良いわけでもなく、肩はこる！！<br>
+                                    また、運動をしているのに綺麗な身体でもないのは何故???から始まり、現在に至ります。
+                                 </p>
+
+                                 <!-- Custom Separator -->
+                                 <div class="custom-separator">
+                                     <span class="custom-separator-icon">⟡</span>
+                                 </div>
+
+                                 <div class="text-sm text-gray-600 leading-relaxed space-y-4">
+                                     <div id="concept-intro">
+                                        <p>はじめまして！<br>パーソナルトレーナーの<span class="text-highlight font-bold">ぬいぬい</span>です！</p> <!-- Highlight applied -->
+                                        <p>スポーツや運動が好きかと言われたら、実は普通です。運動して疲れる事が好きじゃない引きこもりのオタクなので、どちらかというと気持ちは運動が向いてないタイプです。なるべく頑張る時間を少なくして、楽しむ時間を増やしたいなと、如何に運動効果を上げるために何をしたらいいのかを常に考えています。</p>
+                                     </div>
+                                    <div id="concept-more" class="collapsible-content space-y-4">
+                                        <p>お身体や環境状況に合わせて、機能的にも魅力的にもなれるようなお身体づくりを目標に、何故このトレーニングをしているのかを説明・ご案内を心掛けておりますので、初心者の方もオススメです。運動の仕方が分からないだけで、運動神経が無い人はいないと思っています。</p>
+                                        <p>目標、骨格、体力、ライフスタイルは、皆十人十色です。トレーニングメニューも毎回身体の状態を見てからメニューを組みます。大きい筋肉のみを鍛えたり、重量を上げることを重視してはおりません。自分の身体のコントロール力を上げつつ、効率的に筋肉も増やしていくようなメニューの提供をしています。</p>
+                                        <p>また、運動をしているのに何故か身体がずっとかたい、身体の力が抜きにくい等のお悩みにも対応できるよう、お客様に合わせたコンディショニング(ストレッチや手技)を同時提供し、柔軟性も向上していきながらトレーニングを行うことによって、脳から身体の変化の記憶をさせていき、セッションの時間だけではなく、日常生活にも反映させていきます。</p>
+                                        <p>私のセッションは感覚調整などを入れながらトレーニングを行うため、1回目から身体の感覚の変化が生まれます。</p>
+                                        <p>そして少しでも通いやすいように、セッション料金は単発(1回～)からご案内しておりますので、月1回でも、隔週でも、定期的でも、ライフスタイルに合わせた予約が可能です。</p>
+                                        <p>身体が機能的に良くなっていくと、骨格が整ってくる、すると体重は落ちなくとも見た目が大きく変わります。</p>
+                                        <p>脂肪が付きすぎている、気になる部位が大きくなっているのは骨格や筋肉の不調でもあります。そのため腰痛や肩こり等の不調の原因にも繋がっていきます。 また、痩せていても姿勢が整っていないと、今度は年齢が高く見えてしまったりします。</p>
+                                        <p>無意識下でも姿勢も身体も綺麗に魅せることの出来るお身体にできるよう、お客様にとって機能的なお身体になれるよう全力を尽くしていきます。</p>
+                                    </div>
+                                    <button id="concept-toggle-btn" class="font-bold mt-4" style="color: #6B9BD1;">続きを読む ↓</button>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl">サービス・料金</h2>
+                </div>
+                <!-- Flow -->
+                <div class="max-w-4xl mx-auto mb-20 fade-in">
+                    <h3 class="text-2xl font-bold text-center text-[#6B9BD1] mb-10">サービス開始までの流れ</h3>
+                    <div class="relative pl-12">
+                        <div class="absolute left-6 top-6 bottom-6 w-0.5 bg-gray-200"></div>
+                        <!-- Step 1 -->
+                        <div class="relative mb-8">
+                            <div class="absolute -left-12 top-0 flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-xl" style="background-color: #7BC4B0;">1</div>
+                            <div class="bg-white p-6 rounded-2xl shadow-lg border">
+                                <h4 class="font-bold text-[#6B9BD1] mb-2">お問い合わせフォームに記入</h4>
+                                <p class="text-sm text-gray-600">ご記入いただき、無料のカウンセリングから。お客様の悩みを伺いながら最適なプロセスを構築いたします。</p>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="relative mb-8">
+                            <div class="absolute -left-12 top-0 flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-xl" style="background-color: #7BC4B0;">2</div>
+                            <div class="bg-white p-6 rounded-2xl shadow-lg border">
+                                 <h4 class="font-bold text-[#6B9BD1] mb-2">問診票の記入</h4>
+                                <p class="text-sm text-gray-600">お身体状態を細かく把握するため、また当日の時間を充実させるため、事前に問診票の記入をお願いしております。(所要時間2分程)</p>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="relative mb-8">
+                            <div class="absolute -left-12 top-0 flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-xl" style="background-color: #7BC4B0;">3</div>
+                            <div class="bg-white p-6 rounded-2xl shadow-lg border">
+                                 <h4 class="font-bold text-[#6B9BD1] mb-2">体験セッション</h4>
+                                <p class="text-sm text-gray-600">実際のパーソナルトレーニングサービスを体験 60分/¥3,300 (税込)<br>※レンタルジム・交通費等の費用は別途必要</p>
+                            </div>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="relative mb-8">
+                            <div class="absolute -left-12 top-0 flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-xl" style="background-color: #7BC4B0;">4</div>
+                            <div class="bg-white p-6 rounded-2xl shadow-lg border">
+                                 <h4 class="font-bold text-[#6B9BD1] mb-2">サービス内容の確認</h4>
+                                <p class="text-sm text-gray-600">今後のお身体に合わせたトレーニング・コンディショニングのメニューの内容、場所、時間帯、曜日、料金の確認</p>
+                            </div>
+                        </div>
+                        <!-- Step 5 -->
+                        <div class="relative">
+                            <div class="absolute -left-12 top-0 flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-xl" style="background-color: #7BC4B0;">5</div>
+                            <div class="bg-white p-6 rounded-2xl shadow-lg border">
+                                 <h4 class="font-bold text-[#6B9BD1] mb-2">セッションスタート！</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Section -->
+                <div class="max-w-5xl mx-auto">
+                    <!-- Basic Menu -->
+                    <h3 class="text-2xl font-bold text-center text-[#6B9BD1] mb-10 fade-in">基本メニュー</h3>
+                    <div class="space-y-6 mb-12">
+                        <!-- Plan 1: Conditioning + Training -->
+                        <div class="border rounded-2xl p-6 shadow-md fade-in">
+                            <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
+                                <h4 class="text-xl font-bold text-[#6B9BD1] mb-2 sm:mb-0 flex items-center"><span class="mr-2 text-2xl">💪</span>コンディショニング＋トレーニング (90分)</h4>
+                                <p class="text-2xl font-bold" style="color: #98D8C8;">12,000円</p>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">身体を整えながら、正しい動きを身につけていく90分。<br>姿勢・柔軟性・動作を改善し、見た目も機能も美しく整えます。</p>
+                            <div class="mb-4">
+                                <h5 class="font-bold text-gray-700 text-sm mb-2">こんな方におすすめ</h5>
+                                <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                                    <li>姿勢を整えたい、見た目から綺麗にしたい</li>
+                                    <li>動作をスムーズにして疲れにくくしたい</li>
+                                    <li>筋トレ効果をもっと高めたい</li>
+                                    <li>痛みや不調を予防したい</li>
+                                </ul>
+                            </div>
+                            <div class="bg-teal-50 border-l-4 p-4 rounded-r-lg" style="border-color: #7BC4B0;">
+                                <p class="font-bold text-sm" style="color: #047857;">オプション</p>
+                                <p class="text-sm mt-1" style="color: #047857;">＋加圧トレーニング　1,000円（腕のみ／脚のみ／腕＋脚）<br><span class="text-xs">※初回は安全確認の上、導入を判断します。</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Plan 2: Training Only -->
+                        <div class="border rounded-2xl p-6 shadow-md fade-in">
+                            <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
+                                <h4 class="text-xl font-bold text-[#6B9BD1] mb-2 sm:mb-0 flex items-center"><span class="mr-2 text-2xl">🏋️‍♀️</span>トレーニングのみ (60分)</h4>
+                                <p class="text-2xl font-bold" style="color: #98D8C8;">10,000円</p>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">身体の使い方を磨き、機能的に動ける身体へ導くセッション。<br>重さよりも「正しい感覚とコントロール」を重視します。</p>
+                            <div class="mb-4">
+                                <h5 class="font-bold text-gray-700 text-sm mb-2">こんな方におすすめ</h5>
+                                <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                                    <li>効率的に筋肉をつけたい</li>
+                                    <li>効果的なトレーニングを知りたい</li>
+                                    <li>日常動作のパフォーマンスを上げたい</li>
+                                    <li>動作のクセを改善したい</li>
+                                </ul>
+                            </div>
+                             <div class="bg-teal-50 border-l-4 p-4 rounded-r-lg" style="border-color: #7BC4B0;">
+                                <p class="font-bold text-sm" style="color: #047857;">オプション</p>
+                                <p class="text-sm mt-1" style="color: #047857;">＋加圧トレーニング　1,000円（腕のみ／脚のみ／腕＋脚）</p>
+                            </div>
+                        </div>
+
+                        <!-- Plan 3: Conditioning Only -->
+                        <div class="border rounded-2xl p-6 shadow-md fade-in">
+                             <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
+                                <h4 class="text-xl font-bold text-[#6B9BD1] mb-2 sm:mb-0 flex items-center"><span class="mr-2 text-2xl">🌸</span>コンディショニング (60分)</h4>
+                                <p class="text-2xl font-bold" style="color: #98D8C8;">8,000円</p>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">ストレッチや手技で全身の可動域と柔軟性を引き出し、<br>疲労回復や姿勢改善を目的に整えていくセッション。</p>
+                            <div class="mb-4">
+                                <h5 class="font-bold text-gray-700 text-sm mb-2">こんな方におすすめ</h5>
+                                <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                                     <li>肩こり・腰の重だるさを改善したい</li>
+                                     <li>猫背や反り腰など、姿勢を整えたい</li>
+                                     <li>運動前後のケアをしたい</li>
+                                     <li>まずは身体を軽くしたい</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                         <!-- Plan 4: Trial Session -->
+                        <div class="border rounded-2xl p-6 shadow-md fade-in">
+                            <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
+                                <h4 class="text-xl font-bold text-[#6B9BD1] mb-2 sm:mb-0 flex items-center"><span class="mr-2 text-2xl">🌿</span>体験セッション (60分・初回限定)</h4>
+                                <!-- Price varies, shown below -->
+                            </div>
+                            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <h5 class="font-bold text-gray-700 text-sm mb-1 flex items-center"><span class="mr-1">🌞</span>昼の部 <span class="text-xs ml-2 px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded-full">おすすめ</span></h5>
+                                    <p class="text-lg font-bold pl-5 mb-1" style="color: #98D8C8;">3,300円</p>
+                                    <p class="text-gray-600 text-xs pl-5">10:00〜16:00限定。<br>カウンセリング＋身体チェック＋軽いトレーニングまたはコンディショニングを実施。<br>まずは自分の身体を知るところから始めたい方に。</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-700 text-sm mb-1 flex items-center"><span class="mr-1">🌙</span>夜の部</h5>
+                                    <p class="text-lg font-bold pl-5 mb-1" style="color: #98D8C8;">5,000円</p>
+                                    <p class="text-gray-600 text-xs pl-5">16:00以降<br>仕事帰りなど、都合の良い時間に受けたい方向け。</p>
+                                </div>
+                            </div>
+                             <div class="text-gray-600 text-xs space-y-1 border-t pt-4">
+                                <p class="font-bold text-gray-700 mb-1">共通ポイント</p>
+                                <p>・初回限定（お一人様1回まで）</p>
+                                <p>・加圧トレーニング体験をご希望の方は＋1,000円</p>
+                                <p>・出張の場合は別途交通費・レンタルジム代が必要です</p>
+                                <br>
+                                <p>NUINUIでは、リピーター様・ご紹介の方を中心にご案内しております。<br>新規のお客様は【月3名様限定】で受付しております。<br>ひとりひとりのお身体としっかり向き合うため、ご理解ください🌸</p>
+                             </div>
+                        </div>
+
+                        <!-- Plan 5: Online Session -->
+                        <div class="border rounded-2xl p-6 shadow-md fade-in">
+                             <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
+                                <h4 class="text-xl font-bold text-[#6B9BD1] mb-2 sm:mb-0 flex items-center"><span class="mr-2 text-2xl">💎</span>オンラインセッション (30分)</h4>
+                                <p class="text-2xl font-bold" style="color: #98D8C8;">3,500円</p>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Zoomを使用して行うオンラインサポート。<br>ご自宅や職場で、空き時間に身体を整えたい方に。<br>口頭での動作チェックやセルフケア指導など、短時間でも効果的にリセットできます。</p>
+                            <p class="text-xs text-gray-500 bg-gray-100 p-2 rounded inline-block">※既存のお客様限定</p>
+                        </div>
+                    </div>
+
+                    <!-- Preset Examples -->
+                    <h3 class="text-2xl font-bold text-center text-[#6B9BD1] mb-10 fade-in flex items-center justify-center"><span class="mr-2 text-2xl">🩵</span>よくある組み合わせ例（プリセット）</h3>
+                    <p class="text-center text-sm text-gray-500 mb-10 fade-in -mt-6">※お客様の体調や希望によって内容は変化していきます。</p>
+                    <div class="grid md:grid-cols-2 gap-8 mb-20">
+                        <!-- Preset 1: Balance Up -->
+                        <div class="border rounded-2xl p-6 shadow-md fade-in bg-white">
+                            <h4 class="text-lg font-bold text-center text-[#6B9BD1] mb-4">🌿 バランスアップ90</h4>
+                            <div class="space-y-3 text-sm">
+                                <p><span class="font-bold">内容：</span> コンディショニング＋トレーニング（90分）<br><span class="ml-4">【＋加圧：腕＋脚】</span></p>
+                                <p><span class="font-bold">特徴：</span> 姿勢・可動域・筋力を総合的に整える定番プラン。骨格から整え、見た目と機能の両方を高めます。</p>
+                                <p><span class="font-bold">おすすめ：</span> 姿勢改善・疲れにくい身体づくり・ボディライン調整</p>
+                            </div>
+                        </div>
+                        <!-- Preset 2: Slim Boost -->
+                        <div class="border rounded-2xl p-6 shadow-md fade-in bg-white">
+                            <h4 class="text-lg font-bold text-center text-[#6B9BD1] mb-4">✨ スリムブースト90</h4>
+                            <div class="space-y-3 text-sm">
+                                <p><span class="font-bold">内容：</span> コンディショニング（短）→【加圧（腕のみ）】→トレーニング</p>
+                                <p><span class="font-bold">特徴：</span> 成長ホルモン分泌を促し、短時間でも代謝を最大化。軽い負荷で引き締め・美肌・代謝UPを狙う女性人気プラン。</p>
+                                <p><span class="font-bold">おすすめ：</span> ダイエット・冷え・むくみ・代謝改善</p>
+                            </div>
+                        </div>
+                         <!-- Preset 3: Recovery -->
+                        <div class="border rounded-2xl p-6 shadow-md fade-in bg-white">
+                            <h4 class="text-lg font-bold text-center text-[#6B9BD1] mb-4">🌙 リカバリー60</h4>
+                            <div class="space-y-3 text-sm">
+                                <p><span class="font-bold">内容：</span> コンディショニング（45分）→軽いトレーニング</p>
+                                <p><span class="font-bold">特徴：</span> 可動域と血流を促し、不調や疲労を回復へ導く。トレーニング前後や、体調を整えたい日におすすめ。</p>
+                                <p><span class="font-bold">おすすめ：</span> 肩こり・腰の重さ・倦怠感・睡眠改善</p>
+                            </div>
+                        </div>
+                        <!-- Preset 4: Functional Up -->
+                        <div class="border rounded-2xl p-6 shadow-md fade-in bg-white">
+                            <h4 class="text-lg font-bold text-center text-[#6B9BD1] mb-4">⚡ ファンクショナルアップ90</h4>
+                             <div class="space-y-3 text-sm">
+                                <p><span class="font-bold">内容：</span> コンディショニング（短）＋トレーニング＋【加圧（脚のみ)】</p>
+                                <p><span class="font-bold">特徴：</span> 神経反応を整え、正確な動作と安定性を高める。機能的な動きを養い、全身の連動性を引き出す。</p>
+                                <p><span class="font-bold">おすすめ：</span> スポーツ・パフォーマンスアップ・動作改善</p>
+                            </div>
+                        </div>
+                        <!-- Preset 5: Maintenance Day -->
+                        <div class="border rounded-2xl p-6 shadow-md fade-in bg-white md:col-span-2 max-w-lg mx-auto">
+                            <h4 class="text-lg font-bold text-center text-[#6B9BD1] mb-4">☁ メンテナンスデイ90</h4>
+                             <div class="space-y-3 text-sm">
+                                <p><span class="font-bold">内容：</span> コンディショニング＋【加圧（腕のみ)】＋軽トレーニング</p>
+                                <p><span class="font-bold">特徴：</span> 血流促進と身体のリズムを整える、ゆるめの調整型。運動初心者でも安心して続けやすいリセットメニュー。</p>
+                                <p><span class="font-bold">おすすめ：</span> 忙しい日々のケア・軽い運動・体調維持</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ticket Plans -->
+                    <h3 class="text-2xl font-bold text-center text-[#6B9BD1] mb-10 fade-in">お得な回数券プラン (90分)</h3>
+                    <div class="grid md:grid-cols-2 gap-8 mb-8 max-w-3xl mx-auto">
+                        <!-- 10 Tickets -->
+                        <div class="border rounded-2xl p-6 text-center shadow-md flex flex-col justify-between fade-in">
+                            <div>
+                                <h4 class="text-xl font-bold text-[#6B9BD1]">10回券</h4>
+                                <p class="text-4xl font-bold my-4" style="color: #98D8C8;">119,000<span class="text-xl">円</span></p>
+                                <p class="text-gray-600">1回あたり 11,900円</p>
+                            </div>
+                            <div class="bg-green-100 text-green-800 font-bold py-2 px-4 rounded-lg mt-6">
+                                1,000円お得
+                            </div>
+                        </div>
+                        <!-- 20 Tickets - Popular -->
+                        <div class="border-2 rounded-2xl p-6 text-center shadow-lg flex flex-col justify-between relative fade-in" style="border-color: #7BC4B0;">
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 text-white px-3 py-1 text-sm font-bold rounded-full" style="background-color: #7BC4B0;">人気プラン</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-[#6B9BD1]">20回券</h4>
+                                <p class="text-4xl font-bold my-4" style="color: #98D8C8;">234,000<span class="text-xl">円</span></p>
+                                <p class="text-gray-600">1回あたり 11,700円</p>
+                            </div>
+                            <div class="bg-green-100 text-green-800 font-bold py-2 px-4 rounded-lg mt-6">
+                                6,000円お得
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Notes -->
+                    <div class="text-left text-sm text-gray-500 space-y-1 fade-in max-w-3xl mx-auto">
+                         <p>※上記は90分メニューの回数券です。60分メニューの回数券についてはお問い合わせください。</p>
+                         <p>※加圧導入オプションは＋1,000円/回（希望者のみ）</p>
+                         <p>※すべて出張セッション料金（交通費・レンタルジム代は別途）</p>
+                         <p>※回数券の有効期限は「初回利用から1年以内」を目安にご利用ください</p>
+                    </div>
+                </div>
+
+                <!-- Travel Training Info -->
+                <div class="max-w-5xl mx-auto mt-20 text-left bg-white p-8 rounded-2xl shadow-lg border fade-in">
+                    <h3 class="text-2xl font-bold text-[#6B9BD1] mb-6 flex items-center">
+                        <span class="text-2xl mr-3" style="color: #7BC4B0;">📍</span> 出張トレーニングについて
+                    </h3>
+                    <div class="space-y-4 text-gray-700">
+                        <div>
+                            <h4 class="font-bold">出張エリア</h4>
+                            <p>東京23区内を中心に、千葉・埼玉・神奈川など近郊エリアも対応しています。希望の地域が対応可能かは、お気軽にご相談ください。</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">場所</h4>
+                            <p>お客様のご自宅、マンションのジムスペース、または契約レンタルジム等でトレーニングを行います。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12 fade-in">
+                     <a href="#contact" class="btn-mint inline-block text-white font-bold py-4 px-10 rounded-full transition-all duration-300 hover:scale-105 text-lg shadow-lg hover:shadow-xl">
+                        まずは無料相談から始める
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 md:py-28 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl">お客様の声</h2>
+                </div>
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 fade-in">
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 p-2">
+                            <img src="https://nimble-sunburst-26786d.netlify.app/image/153195_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                        </div>
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 p-2">
+                            <img src="https://nimble-sunburst-26786d.netlify.app/image/153196_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                        </div>
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 p-2">
+                            <img src="https://nimble-sunburst-26786d.netlify.app/image/153197_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                        </div>
+                    </div>
+
+                    <div id="testimonials-more" class="collapsible-content">
+                        <div class="max-w-lg mx-auto mb-12 fade-in">
+                            <div>
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/customer1.jpg" alt="お客様の変化" class="rounded-2xl shadow-lg w-full">
+                            </div>
+                        </div>
+                        <p class="max-w-3xl mx-auto mb-16 fade-in text-sm text-left">食事制限無し、重りも2kg以上持たずとも少しずつ身体は変化していきます。(約3～4ヶ月)
+                        <br>また柔軟性を上げつつゆっくり根本から改善していくため、運動をしない期間があっても戻りにくいです。(個人差はあります)</p>
+
+                        <!-- Image Reviews -->
+                        <div id="testimonials-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/149931_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                            </div>
+                            <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/149932_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                            </div>
+                            <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/149933_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                            </div>
+                            <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/149927_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                            </div>
+                            <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/149928_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                            </div>
+                            <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/149929_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                            </div>
+                            <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/149930_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Toggle Button Moved Here -->
+                    <div class="text-center mt-8 fade-in">
+                        <button id="testimonials-toggle-btn" class="border-2 rounded-full py-2 px-6 transition-all duration-300" style="border-color: #6B9BD1; color: #6B9BD1;">続きを読む</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl">Q&A</h2>
+                </div>
+                <div class="space-y-4">
+                    <div class="faq-item border-b pb-4 fade-in">
+                        <div class="faq-question flex justify-between items-center cursor-pointer">
+                            <h3 class="text-lg font-bold text-[#6B9BD1]">Q. 持ち物は？</h3>
+                            <div class="faq-arrow text-2xl text-[#6B9BD1] transform transition-transform duration-300">↓</div>
+                        </div>
+                        <div class="faq-answer text-gray-600">
+                            <p>A. 動きやすい服装、タオル、 お飲み物をご用意ください。足底感覚のトレーニングも行ったり等するため、基本的にシューズは不要です。(今後のトレーニング状況によりお願いする可能性はあります) 器具は基本的にこちらで用意いたしますが、ご自宅出張希望の方は別途ご案内がございます。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item border-b pb-4 fade-in">
+                        <div class="faq-question flex justify-between items-center cursor-pointer">
+                            <h3 class="text-lg font-bold text-[#6B9BD1]">Q. 加圧トレーニングは初心者でも大丈夫？</h3>
+                             <div class="faq-arrow text-2xl text-[#6B9BD1] transform transition-transform duration-300">↓</div>
+                        </div>
+                        <div class="faq-answer text-gray-600">
+                            <p>A. 事前に問診票にてお身体の過去、現在、環境をチェックした上でご提供しますのでご安心ください。最初は少しがんばれる程度から、今後のお客様にあわせてレベルを変えていきます。</p>
+                        </div>
+                    </div>
+                     <div class="faq-item border-b pb-4 fade-in">
+                        <div class="faq-question flex justify-between items-center cursor-pointer">
+                            <h3 class="text-lg font-bold text-[#6B9BD1]">Q. 出張対応は女性だけ？</h3>
+                             <div class="faq-arrow text-2xl text-[#6B9BD1] transform transition-transform duration-300">↓</div>
+                        </div>
+                        <div class="faq-answer text-gray-600">
+                            <p>A. もちろん男性も対応しております。ただ、ご自宅出張は女性のみ、またはご夫婦でお受けになられる方のみとなります。</p>
+                        </div>
+                    </div>
+                     <div class="faq-item border-b pb-4 fade-in">
+                        <div class="faq-question flex justify-between items-center cursor-pointer">
+                            <h3 class="text-lg font-bold text-[#6B9BD1]">Q. 整体のみでも大丈夫？</h3>
+                             <div class="faq-arrow text-2xl text-[#6B9BD1] transform transition-transform duration-300">↓</div>
+                        </div>
+                        <div class="faq-answer text-gray-600">
+                            <p>A. もちろん整体のみのご予約も可能です。マットがあるお近くのレンタルルームを利用しご提供いたします。(ルーム代は別途料金)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-gray-600 mb-8 leading-relaxed text-sm">NUINUIでは、出張専門・完全オーダーメイドで、お一人おひとりの身体やライフスタイルに合わせたサポートを行っています。<br>その日の状態に寄り添いながら、無理なく“続けられる方法”を一緒に見つけていくので、運動が苦手な方でも安心して始めていただけます。<br>たとえ頑張れない日があっても大丈夫です。今のままのあなたで始めて問題ありません。<br>お気持ちやお悩みを、どうぞ安心してお聞かせくださいね。</p>
+                    <div class="bg-white p-8 rounded-2xl shadow-xl fade-in text-left border mb-12">
+                        <h3 class="text-2xl font-bold text-[#6B9BD1] mb-6 text-center">LINEでのご相談</h3>
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="text-center">
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/line-qr.jpg" alt="LINE QR Code" class="mx-auto mb-4 rounded-lg w-48 h-48">
+                                <p class="font-bold">QRコードで追加</p>
+                            </div>
+                            <div class="text-left space-y-4 md:space-y-8 flex flex-col justify-center">
+                                <!-- IDで検索 Section Removed -->
+                                <div>
+                                    <h4 class="font-bold mb-1">ボタンから追加</h4>
+                                     <a href="https://lin.ee/FwmU1q4" class="btn-mint inline-block text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:scale-105">
+                                        LINEで相談する
+                                    </a>
+                                </div>
+                                <p class="text-sm text-gray-500 pt-4">ご質問やご相談だけでも大歓迎です。<br>24時間以内に必ず返信いたします。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- SuperSaaS Widget moved here -->
+                 <div class="supersaas-widget-container fade-in max-w-4xl mx-auto">
+                    <script src="https://cdn.supersaas.net/widget.js"></script>
+                    <script class="supersaas-widget">var supersaas = new SuperSaaS("604109:nuinui","801139:reservation",{"widget_type":"frame","view":"week","domain":"www.supersaas.jp"})</script>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Private Section -->
+        <section id="private" class="py-20 md:py-28 bg-gray-50">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="text-center mb-16 fade-in">
+                    <!-- Removed h2 title -->
+                </div>
+
+                <div id="private-more-content" class="collapsible-content">
+                    <!-- Personal Cards -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center mb-16 fade-in">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="text-4xl mb-4" style="color: #7BC4B0;">🎵</div>
+                            <h4 class="text-lg font-bold text-[#6B9BD1] mb-2">趣味</h4>
+                            <p class="text-gray-600">音楽・動画鑑賞<br>アニメゲーム漫画<br>月初参り</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="text-4xl mb-4" style="color: #7BC4B0;">☕</div>
+                            <h4 class="text-lg font-bold text-[#6B9BD1] mb-2">好きな食べ物</h4>
+                            <p class="text-gray-600">オムライス、回鍋肉<br>しゃぶしゃぶ、チーズ</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="text-4xl mb-4" style="color: #7BC4B0;">🤍</div>
+                            <h4 class="text-lg font-bold text-[#6B9BD1] mb-2">休日の過ごし方</h4>
+                            <p class="text-gray-600 text-sm">セミナーに行ったり勉強をしたり、たまに運動をしたり<br>へちま(フクロウ)とゆっくり過ごす<br>フクロウカフェに行く<br>気になってたご飯を食べる<br>家に引きこもってアニメ・漫画・動画鑑賞<br>たまにイベントに行く(人混み得意ではない)</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="text-4xl mb-4" style="color: #7BC4B0;">🎮</div>
+                            <h4 class="text-lg font-bold text-[#6B9BD1] mb-2">人生で1度は やってみたいこと</h4>
+                            <p class="text-gray-600">特撮特有の爆発を使い、<br>推しと結婚フォトを撮る</p>
+                        </div>
+                    </div>
+
+                    <!-- Event Organizer -->
+                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center fade-in mb-16">
+                        <div class="bg-white p-4 rounded-2xl shadow-lg flex flex-col h-full">
+                           <h4 class="text-lg font-bold text-[#6B9BD1] mb-4 text-center">主催をしたイベントの様子</h4>
+                           <div class="flex-grow overflow-hidden rounded-2xl shadow-inner mt-4">
+                                <img src="https://nimble-sunburst-26786d.netlify.app/image/hobby1.jpg" alt="DJ Event" class="w-full h-full object-cover">
+                           </div>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-lg text-left leading-relaxed">
+                           <p>最近は昔から好きだった音楽をきっかけに、笑顔を増やせたらと、楽しんでもらえるような場をつくりたいと、イベントのオーガナイザー(主催者)も行っています。食べることが大好きなので、自分が好きなDJさん達にお願いして、飲食店で飲食＋音楽を楽しめる場をつくっています。イベントと言っても陽キャの集まりではなく、美容師、コンカフェキャスト、オタク界隈、治療家、IT関係など、色んな界隈の方が交流しやすい場をつくっています。</p>
+                        </div>
+                    </div>
+
+                    <!-- Main Text -->
+                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center fade-in">
+                        <div class="grid gap-8">
+                             <div class="bg-white p-4 rounded-2xl shadow-lg flex flex-col">
+                                <h4 class="text-lg font-bold text-[#6B9BD1] mb-4 text-center">オフ会の様子</h4>
+                                <div class="flex-grow rounded-2xl shadow-inner overflow-hidden mt-4">
+                                    <img src="https://nimble-sunburst-26786d.netlify.app/image/event1.jpg" alt="オフ会の様子 1" class="w-full h-full object-cover">
+                                </div>
+                             </div>
+                             <div class="rounded-2xl shadow-lg overflow-hidden bg-white aspect-[4/3]">
+                                 <img src="https://nimble-sunburst-26786d.netlify.app/image/event2.jpg" alt="オフ会の様子 2" class="w-full h-full object-cover">
+                             </div>
+                        </div>
+                        <div class="text-left text-gray-700 leading-relaxed space-y-4 bg-white p-8 rounded-2xl shadow-lg">
+                            <p>運動以外にも時間を使いたい多趣味人間。常に運動をしてきたけれど、運動自体はそこまで好きではない。生物(動物)として必要だからやらきゃなあと思っています。</p>
+                            <p>学生の頃からの生粋のオタク。ガチガチのインドアです。全盛期のニコニコ動画を通り、アニメやゲームを嗜んできた学生時代。推しの話、ミームネタ等どんとこい。オタクのお客様だけを集めたオフ会など年に1回のペースで行っています。個人でインストラクターをしながら、IT業界や法律事務所に居たり。元コンカフェのキャストだったり、アイドルもしていたりと、気になることは常に飛び込んでいますが、一貫して常に身体のことに関して調べるのが癖でした。</p>
+                            <p>｢何故本名じゃなく、ぬいぬいなの？｣<br>キャストをしていた時のあだ名です。あと、ぬいぬいって呼ぶと口の形がイーッで終わるので好き。笑</p>
+                            <p class="text-highlight font-bold">なにより人を笑顔にするのが好きです。笑顔を見ることが好き。自分と過ごす運動の時間を、少しでも楽しかったと思えるような時間にしていきたいと思っています。どうぞよろしくお願いいたします。</p> <!-- Highlight applied -->
+                        </div>
+                    </div>
+                </div>
+                 <div class="text-center mt-8 fade-in">
+                    <img id="private-toggle-img" src="https://nimble-sunburst-26786d.netlify.app/image/hechima.png" alt="もっと詳しく見る" class="mx-auto mb-4 cursor-pointer w-24 h-24 transition-transform duration-300 hover:scale-110">
+                    <button id="private-toggle-btn" class="border-2 rounded-full py-2 px-6 transition-all duration-300" style="border-color: #6B9BD1; color: #6B9BD1;">ぬいぬいプライベート</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background-color: #6B9BD1;" class="text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <a href="#home" class="font-montserrat text-2xl font-bold mb-4 inline-block">NUINUI</a>
+            <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 mb-6">
+                 <a href="#reasons" class="hover:text-gray-200">コンセプト</a>
+                 <a href="#trainer" class="hover:text-gray-200">トレーナー紹介</a>
+                 <a href="#services" class="hover:text-gray-200">サービス・料金</a>
+                 <a href="#testimonials" class="hover:text-gray-200">お客様の声</a>
+                 <a href="#contact" class="hover:text-gray-200">お問い合わせ</a>
+            </div>
+            <!-- Instagram Icon Removed -->
+            <p class="text-sm text-gray-200 mt-6">&copy; 2025 NUINUI Personal Training. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <a href="#contact" id="fab" class="btn-mint fixed bottom-10 right-6 text-white font-bold py-3 px-4 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-40 flex items-center">
+        <span class="text-xs mr-2">予約・相談</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('header');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+            const fab = document.getElementById('fab');
+            const heroSection = document.getElementById('home');
+
+            const conceptToggleBtn = document.getElementById('concept-toggle-btn');
+            const conceptMore = document.getElementById('concept-more');
+
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            const testimonialsToggleBtn = document.getElementById('testimonials-toggle-btn');
+            const testimonialsMore = document.getElementById('testimonials-more');
+
+            const privateToggleBtn = document.getElementById('private-toggle-btn');
+            const privateMore = document.getElementById('private-more-content');
+            const privateToggleImg = document.getElementById('private-toggle-img');
+
+
+            const toggleMenu = () => {
+                mobileMenu.classList.toggle('open');
+                menuOpenIcon.classList.toggle('hidden');
+                menuCloseIcon.classList.toggle('hidden');
+                document.body.classList.toggle('overflow-hidden');
+            };
+
+            // Header background on scroll
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                    header.classList.remove('header-transparent');
+                } else {
+                    header.classList.remove('header-scrolled');
+                    header.classList.add('header-transparent');
+                }
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll();
+
+            // Mobile menu toggle
+            mobileMenuButton.addEventListener('click', toggleMenu);
+
+            // Close mobile menu when a link is clicked
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('open')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // Intersection Observer for fade-in animations
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const fadersObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                fadersObserver.observe(fader);
+            });
+
+            // Intersection Observer for FAB
+            if (fab && heroSection) {
+                const fabObserverOptions = {
+                    root: null,
+                    rootMargin: "0px",
+                    threshold: 0.01
+                };
+
+                const fabObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) {
+                            fab.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                        } else {
+                            fab.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                        }
+                    });
+                }, fabObserverOptions);
+
+                fabObserver.observe(heroSection);
+            }
+
+            // Accordion Logic
+             accordionItems.forEach(item => {
+                const trigger = item.querySelector('.accordion-trigger');
+                if(trigger) {
+                    trigger.addEventListener('click', () => {
+                        item.classList.toggle('active');
+                    });
+                }
+            });
+             faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+
+
+            // "Read More" for Concept
+            if (conceptToggleBtn && conceptMore) {
+                conceptToggleBtn.addEventListener('click', () => {
+                    conceptMore.classList.toggle('expanded');
+                    conceptToggleBtn.textContent = conceptMore.classList.contains('expanded') ? '閉じる ↑' : '続きを読む ↓';
+                });
+            }
+
+            // "Read More" for Private Section
+            const togglePrivateSection = () => {
+                privateMore.classList.toggle('expanded');
+                privateToggleBtn.textContent = privateMore.classList.contains('expanded') ? '閉じる' : 'ぬいぬいプライベート';
+            };
+
+            if (privateToggleBtn && privateMore) {
+                privateToggleBtn.addEventListener('click', togglePrivateSection);
+            }
+            if (privateToggleImg && privateMore) {
+                privateToggleImg.addEventListener('click', togglePrivateSection);
+            }
+
+            // "Read More" for Testimonials
+            if(testimonialsToggleBtn && testimonialsMore) {
+                 testimonialsToggleBtn.addEventListener('click', () => {
+                    testimonialsMore.classList.toggle('expanded');
+                    testimonialsToggleBtn.textContent = testimonialsMore.classList.contains('expanded') ? '閉じる' : '続きを読む';
+                });
+            }
+
+            // Handle hash links to open accordions
+            const handleHashLink = () => {
+                const hash = window.location.hash;
+                if (!hash) return;
+
+                const targetElement = document.querySelector(hash);
+                if (targetElement) {
+                    const parentAccordion = targetElement.closest('.accordion-item') || targetElement.closest('.faq-item');
+                    if (parentAccordion && !parentAccordion.classList.contains('active')) {
+                        // Close any other open accordions
+                        document.querySelectorAll('.accordion-item.active, .faq-item.active').forEach(activeItem => {
+                            if(activeItem !== parentAccordion) {
+                                activeItem.classList.remove('active');
+                            }
+                        });
+                        // Open the target one
+                        parentAccordion.classList.add('active');
+                    }
+                }
+            };
+
+            // Check hash on load
+            window.addEventListener('load', handleHashLink);
+
+            // Check hash on link click
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Timeout to allow scroll to happen before opening
+                    setTimeout(handleHashLink, 50);
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
+
