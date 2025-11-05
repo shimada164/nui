@@ -655,16 +655,25 @@
                     </div>
 
                     <div id="testimonials-more" class="collapsible-content">
-                        <div class="max-w-lg mx-auto mb-12 fade-in">
-                            <div>
-                                <img src="https://nimble-sunburst-26786d.netlify.app/image/customer1.jpg" alt="お客様の変化" class="rounded-2xl shadow-lg w-full">
-                            </div>
-                        </div>
-                        <p class="max-w-3xl mx-auto mb-16 fade-in text-sm text-left">食事制限無し、重りも2kg以上持たずとも少しずつ身体は変化していきます。(約3～4ヶ月)
-                        <br>また柔軟性を上げつつゆっくり根本から改善していくため、運動をしない期間があっても戻りにくいです。(個人差はあります)</p>
-
+                        
                         <!-- Image Reviews -->
                         <div id="testimonials-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 flex flex-col">
+                                <!-- 1. 画像部分 (先に表示・縦に並べる) -->
+                                <div class="p-4 bg-gray-50">
+                                    <img src="https://nimble-sunburst-26786d.netlify.app/image/customer1.jpg" alt="お客様の変化 Before" class="rounded-lg shadow-md w-full mb-4"> <!-- 画像間にマージン追加 -->
+                                    <img src="https://nimble-sunburst-26786d.netlify.app/image/customer2.jpg" alt="お客様の変化 After" class="rounded-lg shadow-md w-full" onerror="this.onerror=null;this.src='https://placehold.co/600x600/F8F9FA/333333?text=Image';">
+                                </div>
+                                
+                                <!-- 2. テキスト部分 (後に表示・改変なし) -->
+                                <div class="p-6 flex-grow">
+                                    <p class="text-xs text-gray-600 leading-relaxed"> <!-- <-- text-sm から text-xs に変更 -->
+                                        食事制限無し、重りも2kg以上持たずとも少しずつ身体は変化していきます。(約3～4ヶ月)
+                                        <br>また柔軟性を上げつつゆっくり根本から改善していくため、運動をしない期間があっても戻りにくいです。(個人差はあります)
+                                    </p>
+                                </div>
+                            </div>
+                            
                             <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
                                 <img src="https://nimble-sunburst-26786d.netlify.app/image/149931_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
                             </div>
@@ -1053,4 +1062,3 @@
     </script>
 </body>
 </html>
-
