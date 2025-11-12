@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NUINUI Personal Training | 出張型パーソナルトレーニング</title>
+    <title>NUI Personal Training | 出張型パーソナルトレーニング</title>
     <!-- Chosen Palette: Main: #6B9BD1 (Soft Blue), Accent: #7BC4B0 (Adjusted Mint), Text: #34495e (Dark Gray), Light BG: #F8FBFF -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/phosphor-icons" rel="stylesheet">
 
     <style>
@@ -20,6 +21,16 @@
         .font-montserrat {
             font-family: 'Montserrat', sans-serif;
         }
+        /* Zen Maru Gothic を見出しに適用する設定 */
+        h1, h2, h3, h4, h5, h6, .section-title {
+            font-family: 'Zen Maru Gothic', sans-serif !important;
+        }
+        /* h1, h3, h4タグに直接Zen Maru Gothicが適用されるように調整 */
+        .fade-in > div > h3, .fade-in > div > h4, .text-center.md\:text-left.fade-in > h1 {
+            font-family: 'Zen Maru Gothic', sans-serif !important;
+        }
+
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px) scale(0.97);
@@ -146,7 +157,7 @@
     <!-- Header -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 header-transparent">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="font-montserrat text-xl font-bold" style="color: #6B9BD1;">NUINUI Personal Training</a>
+            <a href="#home" class="font-montserrat text-xl font-bold" style="color: #6B9BD1;">- Neuro x Utility x Integration -</a>
             <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="#reasons" class="text-gray-600 hover:text-[#6B9BD1] font-medium nav-link">コンセプト</a>
@@ -193,10 +204,10 @@
                     <div class="text-center md:text-left fade-in" style="transition-delay: 200ms;">
                         <h1 class="font-bold mb-4" style="font-size: 1.2rem; line-height: 1.7; color: #34495e;">
                             ただ痩せるだけじゃない。<br>
-                            一生ものの<span class="text-highlight">「健康的な美しさ」</span>を<br>手に入れる。<br> <!-- Removed inline style, added class -->
+                            一生ものの<span class="text-highlight">「健康的な美しさ」</span>を<br>手に入れる。<br>
                             人生ずっと楽しめる身体に。
                         </h1>
-                        <p class="font-bold mb-4 text-gray-700" style="font-size: 1.4rem;">NUINUI Personal Training</p>
+                        <p class="font-bold mb-4 text-gray-700" style="font-size: 1.4rem;">NUI Personal Training</p>
                         <p class="mb-10" style="font-size: 0.8rem; line-height: 1.7;">
                             あなたのこの先の人生に<br>
                             笑顔を増やしていきたい、<br>
@@ -215,8 +226,15 @@
         <!-- Reasons Section -->
         <section id="reasons" class="py-20 md:py-28 bg-gray-50">
             <div class="container mx-auto px-6">
+                <div class="text-center mb-10 fade-in">
+                    <p class="text-xl md:text-2xl font-bold leading-relaxed" style="color: #34495e;">
+                        NUI — Neuro × Utility × Integration —<br>
+                        神経・実用性・統合の3つを軸に、<br>
+                        身体の“使い方”を整えていく。
+                    </p>
+                </div>
                 <div class="text-center mb-16 fade-in">
-                    <h2 class="section-title text-xl md:text-4xl">【NUINUI Personal Training】が<br class="sm:hidden">選ばれる理由</h2>
+                    <h2 class="section-title text-xl md:text-4xl">【NUI Personal Training】が<br class="sm:hidden">選ばれる理由</h2>
                 </div>
                 <div class="space-y-4">
                     <!-- Reason 1 -->
@@ -318,7 +336,7 @@
                         <!-- Details -->
                         <div class="md:col-span-2 text-left bg-white p-8 rounded-2xl shadow-lg">
                             <h3 class="text-3xl font-bold text-[#6B9BD1]">ぬいぬい</h3>
-                            <p class="text-gray-500 mb-6">【NUINUI Personal Training】代表</p>
+                            <p class="text-gray-500 mb-6">【NUI Personal Training】代表</p>
                             <div class="border-t pt-6">
                                  <h4 class="text-lg font-bold text-[#6B9BD1] mb-4 flex items-center">
                                     <span class="mr-2 text-xl">📄</span> 経歴・資格
@@ -506,7 +524,7 @@
                                 <p>・加圧トレーニング体験をご希望の方は＋1,000円</p>
                                 <p>・出張の場合は別途交通費・レンタルジム代が必要です</p>
                                 <br>
-                                <p>NUINUIでは、リピーター様・ご紹介の方を中心にご案内しております。<br>新規のお客様は【月3名様限定】で受付しております。<br>ひとりひとりのお身体としっかり向き合うため、ご理解ください🌸</p>
+                                <p>NUIでは、リピーター様・ご紹介の方を中心にご案内しております。<br>新規のお客様は【月3名様限定】で受付しております。<br>ひとりひとりのお身体としっかり向き合うため、ご理解ください🌸</p>
                              </div>
                         </div>
 
@@ -754,7 +772,7 @@
         <section id="contact" class="py-20 md:py-28 bg-white">
             <div class="container mx-auto px-6">
                 <div class="max-w-4xl mx-auto">
-                    <p class="text-gray-600 mb-8 leading-relaxed text-sm">NUINUIでは、出張専門・完全オーダーメイドで、お一人おひとりの身体やライフスタイルに合わせたサポートを行っています。<br><br>その日の状態に寄り添いながら、無理なく“続けられる方法”を一緒に見つけていくので、運動が苦手な方でも安心して始めていただけます。<br><br>たとえ頑張れない日があっても大丈夫です。<br>今のままのあなたで始めて問題ありません。<br>お気持ちやお悩みを、どうぞ安心してお聞かせくださいね。</p>
+                    <p class="text-gray-600 mb-8 leading-relaxed text-sm">NUIでは、出張専門・完全オーダーメイドで、お一人おひとりの身体やライフスタイルに合わせたサポートを行っています。<br><br>その日の状態に寄り添いながら、無理なく“続けられる方法”を一緒に見つけていくので、運動が苦手な方でも安心して始めていただけます。<br><br>たとえ頑張れない日があっても大丈夫です。<br>今のままのあなたで始めて問題ありません。<br>お気持ちやお悩みを、どうぞ安心してお聞かせくださいね。</p>
                     <div class="bg-white p-8 rounded-2xl shadow-xl fade-in text-left border mb-12">
                         <h3 class="text-2xl font-bold text-[#6B9BD1] mb-6 text-center">LINEでのご相談</h3>
                         <div class="grid md:grid-cols-2 gap-8 items-center">
@@ -860,7 +878,7 @@
     <!-- Footer -->
     <footer style="background-color: #6B9BD1;" class="text-white py-12">
         <div class="container mx-auto px-6 text-center">
-            <a href="#home" class="font-montserrat text-2xl font-bold mb-4 inline-block">NUINUI</a>
+            <a href="#home" class="font-montserrat text-2xl font-bold mb-4 inline-block">NUI Personal Training</a>
             <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 mb-6">
                  <a href="#reasons" class="hover:text-gray-200">コンセプト</a>
                  <a href="#trainer" class="hover:text-gray-200">トレーナー紹介</a>
@@ -869,7 +887,7 @@
                  <a href="#contact" class="hover:text-gray-200">お問い合わせ</a>
             </div>
             <!-- Instagram Icon Removed -->
-            <p class="text-sm text-gray-200 mt-6">&copy; 2025 NUINUI Personal Training. All Rights Reserved.</p>
+            <p class="text-sm text-gray-200 mt-6">&copy; NUI Personal Training. All Rights Reserved.</p>
         </div>
     </footer>
 
