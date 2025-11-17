@@ -139,6 +139,45 @@
             margin: 0 -0.1em; /* Adjust margin to prevent layout shift */
         }
 
+        .nui-list {
+            display: grid;
+            /* 1列目(ラベル), 2列目(コロン), 3列目(値) */
+            grid-template-columns: auto auto 1fr; 
+            align-items: baseline; /* ベースラインで揃える */
+            row-gap: 0.25rem; /* 英語と日本語の間の行間 */
+            column-gap: 0.25em; /* N と : と Neutrality の間の列間 */
+        }
+        .nui-label {
+            font-size: 1.6rem; /* 元のスタイルに合わせる */
+            font-weight: 700;
+            color: #34495e;
+            justify-self: end; /* ラベルを右揃え */
+        }
+        .nui-colon {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #34495e;
+            padding-right: 0.25em; /* コロンと値の間にスペース */
+        }
+        .nui-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #34495e;
+        }
+        .nui-description {
+            /* 3列を結合して行の先頭から開始 */
+            grid-column: 1 / -1; 
+            font-weight: 400; /* 説明文は太字ではない */
+            font-size: 1.2rem; /* 説明文のフォントサイズ (元のpタグに準拠) */
+            line-height: 1.8;
+            color: #34495e;
+            padding-left: 0.1em; /* N との左端を微調整 */
+            margin-bottom: 0.75rem; /* 次のブロックとのスペース */
+        }
+        .nui-description:last-of-type {
+            margin-bottom: 0;
+        }
+
 
     </style>
 </head>
@@ -212,16 +251,29 @@
         <!-- Reasons Section -->
         <section id="reasons" class="py-20 md:py-28 bg-gray-50">
             <div class="container mx-auto px-6">
-                <div class="mb-10 fade-in">
-                    <p class="md:text-xl font-bold leading-relaxed" style="color: #34495e;">
-                     <span class="text-2xl">N：Neutrality</span><br>
-					 身体を“ニュートラル＝本来の動き”に戻し、<br>
-					 <span class="text-2xl">U：Utilizatio</span>n<br>
-					 正しい使い方を身につけ、<br>
-					 <span class="text-2xl">I：Integration</span><br>
-					全身がつながって動ける状態へ導く。<br>
-                    </p>
+                
+                <!-- ▼▼▼ HTML修正箇所 ▼▼▼ -->
+                <div class="mb-10 fade-in nui-list">
+                    <!-- Row 1 -->
+                    <span class="nui-label">N</span>
+                    <span class="nui-colon">：</span>
+                    <span class="nui-value">Neutrality</span>
+                    <p class="nui-description">身体を“ニュートラル＝本来の動き”に戻し、</p>
+
+                    <!-- Row 2 -->
+                    <span class="nui-label">U</span>
+                    <span class="nui-colon">：</span>
+                    <span class="nui-value">Utilization</span>
+                    <p class="nui-description">正しい使い方を身につけ、</p>
+
+                    <!-- Row 3 -->
+                    <span class="nui-label">I</span>
+                    <span class="nui-colon">：</span>
+                    <span class="nui-value">Integration</span>
+                    <p class="nui-description">全身がつながって動ける状態へ導く。</p>
                 </div>
+                <!-- ▲▲▲ HTML修正箇所 ▲▲▲ -->
+
                 <div class="text-center mb-16 fade-in">
                     <h2 class="section-title text-xl md:text-4xl">【NUI Personal Training】が<br class="sm:hidden">選ばれる理由</h2>
                 </div>
