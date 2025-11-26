@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NUI Personal Training | 出張型パーソナルトレーニング</title>
-    <!-- Chosen Palette: Main: #6B9BD1 (Soft Blue), Accent: #7BC4B0 (Adjusted Mint), Text: #34495e (Dark Gray), Light BG: #F8FBFF -->
+    <meta name="description" content="NUI Personal Trainingは出張型パーソナルトレーニング・整体サービスです。東京・千葉・埼玉エリア対応。加圧トレーニングやオーダーメイドプログラムで健康的な美しさをサポートします。">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -21,10 +23,12 @@
         .font-montserrat {
             font-family: 'Montserrat', sans-serif;
         }
+        /* アニメーションの初期状態。JSで制御されるまでチラつきを防ぐ */
         .fade-in {
             opacity: 0;
             transform: translateY(30px) scale(0.97);
             transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+            will-change: opacity, transform; /* ブラウザにアニメーションを予告 */
         }
         .fade-in.visible {
             opacity: 1;
@@ -40,6 +44,7 @@
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
+            will-change: transform;
         }
         .mobile-menu.open {
             transform: translateX(0);
@@ -56,7 +61,7 @@
         }
 
         .collapsible-content.expanded {
-             max-height: 4000px; /* Adjust as needed for long content */
+             max-height: 4000px; 
         }
 
         .accordion-content {
@@ -64,13 +69,13 @@
             overflow: hidden;
             transition: max-height 0.7s ease-in-out;
         }
-        .accordion-item .accordion-trigger { /* Add specific style for trigger */
-            padding-bottom: 1rem; /* Adjust as needed, equal to original pb-4 */
+        .accordion-item .accordion-trigger { 
+            padding-bottom: 1rem; 
         }
         .accordion-item.active .accordion-content {
-            max-height: 2500px; /* Adjust as needed */
-            padding-top: 1.5rem; /* Space between intro and main text */
-            padding-bottom: 1rem; /* Add padding at the bottom */
+            max-height: 2500px; 
+            padding-top: 1.5rem; 
+            padding-bottom: 1rem; 
         }
         .accordion-item.active .accordion-arrow {
             transform: rotate(180deg);
@@ -89,36 +94,33 @@
             transform: rotate(180deg);
         }
 
-        /* Updated Button Color */
         .btn-mint {
-            background-color: #7BC4B0; /* Changed from #98D8C8 */
-            box-shadow: 0 4px 14px 0 rgba(123, 196, 176, 0.39); /* Adjusted shadow color slightly */
+            background-color: #7BC4B0; 
+            box-shadow: 0 4px 14px 0 rgba(123, 196, 176, 0.39);
         }
         .btn-mint:hover {
-            background-color: #63B3A5; /* Darker shade for hover */
+            background-color: #63B3A5; 
         }
 
-        /* SuperSaaS Widget Container */
         .supersaas-widget-container iframe {
              width: 100%;
              height: 700px;
              border: none;
-             border-radius: 1rem; /* rounded-2xl equivalent */
-             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+             border-radius: 1rem; 
+             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
         }
 
-        /* Custom Separator */
         .custom-separator {
             display: flex;
             align-items: center;
             text-align: center;
-            margin: 1.5rem 0; /* Adjust spacing as needed */
+            margin: 1.5rem 0; 
         }
         .custom-separator::before,
         .custom-separator::after {
             content: '';
             flex: 1;
-            border-bottom: 1px solid #98D8C8; /* Original Accent color for line */
+            border-bottom: 1px solid #98D8C8; 
         }
         .custom-separator:not(:empty)::before {
             margin-right: .5em;
@@ -127,28 +129,26 @@
             margin-left: .5em;
         }
         .custom-separator-icon {
-            color: #98D8C8; /* Original Accent color for icon */
-            font-size: 1.2em; /* Adjust size */
+            color: #98D8C8; 
+            font-size: 1.2em; 
             line-height: 1;
         }
 
-        /* Text Highlight Style */
         .text-highlight {
-            background: linear-gradient(transparent 60%, #98D8C8 60%); /* Apply highlight */
-            padding: 0 0.1em; /* Add slight horizontal padding */
-            margin: 0 -0.1em; /* Adjust margin to prevent layout shift */
+            background: linear-gradient(transparent 60%, #98D8C8 60%); 
+            padding: 0 0.1em; 
+            margin: 0 -0.1em; 
         }
 
         .nui-list {
             display: grid;
-            /* 1列目(ラベル), 2列目(コロン), 3列目(値) */
             grid-template-columns: auto auto 1fr; 
-            align-items: baseline; /* ベースラインで揃える */
-            row-gap: 0.25rem; /* 英語と日本語の間の行間 */
-            column-gap: 0.25em; /* N と : と Neutrality の間の列間 */
+            align-items: baseline; 
+            row-gap: 0.25rem; 
+            column-gap: 0.25em; 
         }
         .nui-label {
-            font-size: 1.6rem; /* 元のスタイルに合わせる */
+            font-size: 1.6rem; 
             font-weight: 700;
             color: #34495e;
             justify-self: center;
@@ -157,7 +157,7 @@
             font-size: 1.6rem;
             font-weight: 700;
             color: #34495e;
-            padding-right: 0.25em; /* コロンと値の間にスペース */
+            padding-right: 0.25em; 
         }
         .nui-value {
             font-size: 1.6rem;
@@ -165,37 +165,35 @@
             color: #34495e;
         }
         .nui-description {
-            /* 3列を結合して行の先頭から開始 */
             grid-column: 1 / -1; 
-            font-weight: 400; /* 説明文は太字ではない */
-            font-size: 1rem; /* 説明文のフォントサイズ (元のpタグに準拠) */
+            font-weight: 400; 
+            font-size: 1rem; 
             line-height: 1.8;
             color: #34495e;
-            padding-left: 0.1em; /* N との左端を微調整 */
-            margin-bottom: 0.75rem; /* 次のブロックとのスペース */
+            padding-left: 0.1em; 
+            margin-bottom: 0.75rem; 
         }
         .nui-description:last-of-type {
             margin-bottom: 0;
         }
-
-
     </style>
+    
+    <!-- Google tag (gtag.js) - Deferred to reduce initial block -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-05333V71JS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-05333V71JS');
+    </script>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-05333V71JS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-05333V71JS');
-</script>
 <body class="antialiased text-gray-700">
 
     <!-- Header -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 header-transparent">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="font-montserrat text-xl font-bold" style="color: #6B9BD1;">NUI Personal Training<a>
+            <a href="#home" class="font-montserrat text-xl font-bold" style="color: #6B9BD1;">NUI Personal Training</a>
             <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="#reasons" class="text-gray-600 hover:text-[#6B9BD1] font-medium nav-link">コンセプト</a>
@@ -206,7 +204,7 @@
             </nav>
             <!-- Mobile Nav Button -->
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="z-50 relative focus:outline-none" style="color: #6B9BD1;">
+                <button id="mobile-menu-button" class="z-50 relative focus:outline-none" style="color: #6B9BD1;" aria-label="メニューを開く">
                     <svg id="menu-open-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     <svg id="menu-close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
@@ -233,8 +231,15 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <!-- Image Column -->
                     <div class="fade-in order-first md:order-last">
-                        <div class="relative rounded-2xl shadow-xl overflow-hidden">
-                            <img src="image/top.jpg" alt="トレーニング風景" class="w-full h-full object-cover">
+                        <div class="relative rounded-2xl shadow-xl overflow-hidden aspect-[4/3] md:aspect-square">
+                            <img 
+                                src="image/top.jpg" 
+                                alt="トレーニング風景" 
+                                class="w-full h-full object-cover" 
+                                width="600" 
+                                height="600"
+                                fetchpriority="high"
+                            >
                             <div class="absolute inset-0 bg-gradient-to-t from-[#6B9BD1] to-transparent opacity-30"></div>
                         </div>
                     </div>
@@ -313,8 +318,15 @@
                                         NUIでは、圧力や脈の変化を「オシロスコープ」という波形モニターで常に可視化し、状態を正確に把握しながら一人ひとりに最適な圧を精密にコントロールしています。この丁寧な管理により、安全性を高めつつ最大限の効果を引き出すことが可能です。ハードな筋トレが苦手な方や初心者でも、安心して継続でき、身体が本来持つ力を最大限に引き出しながら理想の自分へと近づいていけます。
                                     </p>
                                 </div>
-                                <div class="max-h-[450px] overflow-hidden rounded-2xl shadow-xl">
-                                    <img src="image/kaatsu.jpg" alt="加圧トレーニングのイメージ" class="w-full h-full object-cover">
+                                <div class="max-h-[450px] overflow-hidden rounded-2xl shadow-xl aspect-[3/4] md:aspect-auto">
+                                    <img 
+                                        src="image/kaatsu.jpg" 
+                                        alt="加圧トレーニングのイメージ" 
+                                        class="w-full h-full object-cover" 
+                                        loading="lazy" 
+                                        width="400" 
+                                        height="600"
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -339,7 +351,15 @@
                                脳と身体のつながりを整えながら、機能的で美しい動きを身につけていきます。
                             </p>
                             <div class="overflow-hidden rounded-2xl shadow-xl aspect-video">
-                                 <img src="image/154562_0.jpg" alt="オーダーメイドプログラムの作成風景" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/F8F9FA/333333?text=Image';">
+                                 <img 
+                                    src="image/154562_0.jpg" 
+                                    alt="オーダーメイドプログラムの作成風景" 
+                                    class="w-full h-full object-cover" 
+                                    loading="lazy" 
+                                    width="600" 
+                                    height="338"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/F8F9FA/333333?text=Image';"
+                                >
                             </div>
                         </div>
                     </div>
@@ -350,7 +370,7 @@
                            <div class="flex-grow">
                                 <div>
                                     <h3 class="text-xl font-bold text-[#6B9BD1] mb-2">常に行うカウンセリングで身体の変化を感じ、導く</h3>
-                                    <p class="text-gray-600 text-sm leading-relaxed pb-4">「トレーニングを続けても、モチベーションが保てない」<br>そんな時こそ、自分の“変化”に気づくことが大切です。<br>NUINUIでは、毎回のセッションでカウンセリングを行い、<br>“どうなりたいか”を一緒に整理していきます。</p>
+                                    <p class="text-gray-600 text-sm leading-relaxed pb-4">「トレーニングを続けても、モチベーションが保てない」<br>そんな時こそ、自分の“変化”に気づくことが大切です。<br>NUIでは、毎回のセッションでカウンセリングを行い、<br>“どうなりたいか”を一緒に整理していきます。</p>
                                 </div>
                             </div>
                              <div class="accordion-arrow text-2xl text-[#6B9BD1] transform transition-transform duration-300 ml-4 self-start pt-1">↓</div>
@@ -364,7 +384,15 @@
                                 「できた」「変わった」を積み重ねながら、理想の自分へ。
                             </p>
                              <div class="overflow-hidden rounded-2xl shadow-xl aspect-video">
-                                <img src="image/154565_0.jpg" alt="カウンセリング風景" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/F8F9FA/333333?text=Image';">
+                                <img 
+                                    src="image/154565_0.jpg" 
+                                    alt="カウンセリング風景" 
+                                    class="w-full h-full object-cover" 
+                                    loading="lazy" 
+                                    width="600" 
+                                    height="338"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/F8F9FA/333333?text=Image';"
+                                >
                             </div>
                         </div>
                     </div>
@@ -380,7 +408,15 @@
                     <div class="grid md:grid-cols-3 gap-8 items-center mb-12 fade-in">
                         <!-- Image -->
                         <div class="md:col-span-1 max-w-[70%] mx-auto md:max-w-full">
-                            <img src="image/profile.png" alt="Trainer Nuinui" class="rounded-2xl shadow-xl w-full" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1577221084712-45b044c7010a?q=80&w=1948&auto=format&fit=crop';">
+                            <img 
+                                src="image/profile.png" 
+                                alt="Trainer Nuinui" 
+                                class="rounded-2xl shadow-xl w-full" 
+                                loading="lazy" 
+                                width="400" 
+                                height="400"
+                                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1577221084712-45b044c7010a?q=80&w=1948&auto=format&fit=crop';"
+                            >
                         </div>
                         <!-- Details -->
                         <div class="md:col-span-2 text-left bg-white p-8 rounded-2xl shadow-lg">
@@ -711,13 +747,13 @@
                 <div class="max-w-6xl mx-auto">
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 fade-in">
                         <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 p-2">
-                            <img src="image/153195_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                            <img src="image/153195_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl" loading="lazy" width="400" height="600">
                         </div>
                         <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 p-2">
-                            <img src="image/153196_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                            <img src="image/153196_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl" loading="lazy" width="400" height="600">
                         </div>
                         <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 p-2">
-                            <img src="image/153197_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                            <img src="image/153197_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl" loading="lazy" width="400" height="600">
                         </div>
                     </div>
 
@@ -726,8 +762,16 @@
                         <div id="testimonials-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 flex flex-col">
                                 <div class="p-4 bg-gray-50">
-                                    <img src="image/customer1.jpg" alt="お客様の変化 Before" class="rounded-lg shadow-md w-full mb-4">
-                                    <img src="image/customer2.jpg" alt="お客様の変化 After" class="rounded-lg shadow-md w-full" onerror="this.onerror=null;this.src='https://placehold.co/600x600/F8F9FA/333333?text=Image';">
+                                    <img src="image/customer1.jpg" alt="お客様の変化 Before" class="rounded-lg shadow-md w-full mb-4" loading="lazy" width="300" height="200">
+                                    <img 
+                                        src="image/customer2.jpg" 
+                                        alt="お客様の変化 After" 
+                                        class="rounded-lg shadow-md w-full" 
+                                        loading="lazy" 
+                                        width="300" 
+                                        height="200"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/600x600/F8F9FA/333333?text=Image';"
+                                    >
                                 </div>
                                 
                                 <div class="p-6 flex-grow">
@@ -739,25 +783,25 @@
                             </div>
                             
                             <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
-                                <img src="image/149931_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                                <img src="image/149931_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl" loading="lazy" width="400" height="600">
                             </div>
                             <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
-                                <img src="image/149932_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                                <img src="image/149932_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl" loading="lazy" width="400" height="600">
                             </div>
                             <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
-                                <img src="image/149933_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                                <img src="image/149933_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl" loading="lazy" width="400" height="600">
                             </div>
                             <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
-                                <img src="image/149927_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                                <img src="image/149927_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl" loading="lazy" width="400" height="600">
                             </div>
                             <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
-                                <img src="image/149928_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                                <img src="image/149928_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl" loading="lazy" width="400" height="600">
                             </div>
                             <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
-                                <img src="image/149929_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                                <img src="image/149929_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl" loading="lazy" width="400" height="600">
                             </div>
                             <div class="bg-white rounded-2xl shadow-lg fade-in overflow-hidden border border-gray-200 p-2">
-                                <img src="image/149930_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl">
+                                <img src="image/149930_0.jpg" alt="お客様の声" class="w-full h-auto rounded-xl" loading="lazy" width="400" height="600">
                             </div>
                         </div>
                     </div>
@@ -826,7 +870,7 @@
                         <h3 class="text-2xl font-bold text-[#6B9BD1] mb-6 text-center">LINEでのご相談</h3>
                         <div class="grid md:grid-cols-2 gap-8 items-center">
                             <div class="text-center">
-                                <img src="image/line-qr.jpg" alt="LINE QR Code" class="mx-auto mb-4 rounded-lg w-48 h-48">
+                                <img src="image/line-qr.jpg" alt="LINE QR Code" class="mx-auto mb-4 rounded-lg w-48 h-48" loading="lazy" width="200" height="200">
                                 <p class="font-bold">QRコードで追加</p>
                             </div>
                             <div class="text-left space-y-4 md:space-y-8 flex flex-col justify-center">
@@ -845,6 +889,7 @@
                  <!-- SuperSaaS Widget moved here -->
                  <div class="supersaas-widget-container fade-in max-w-4xl mx-auto">
                     <script src="https://cdn.supersaas.net/widget.js"></script>
+                    <!-- loading="lazy" はiframe内に追加する必要があるが、ウィジェットスクリプト経由のため、このcontainerにIntersectionObserverを適用するのが理想的 -->
                     <script class="supersaas-widget">var supersaas = new SuperSaaS("604109:nuinui","801139:reservation",{"widget_type":"frame","view":"week","domain":"www.supersaas.jp"})</script>
                  </div>
             </div>
@@ -886,8 +931,8 @@
                     <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center fade-in mb-16">
                         <div class="bg-white p-4 rounded-2xl shadow-lg flex flex-col h-full">
                            <h4 class="text-lg font-bold text-[#6B9BD1] mb-4 text-center">主催をしたイベントの様子</h4>
-                           <div class="flex-grow overflow-hidden rounded-2xl shadow-inner mt-4">
-                                <img src="image/hobby1.jpg" alt="DJ Event" class="w-full h-full object-cover">
+                           <div class="flex-grow overflow-hidden rounded-2xl shadow-inner mt-4 aspect-video">
+                                <img src="image/hobby1.jpg" alt="DJ Event" class="w-full h-full object-cover" loading="lazy" width="400" height="300">
                            </div>
                         </div>
                         <div class="bg-white p-8 rounded-2xl shadow-lg text-left leading-relaxed">
@@ -900,12 +945,12 @@
                         <div class="grid gap-8">
                              <div class="bg-white p-4 rounded-2xl shadow-lg flex flex-col">
                                 <h4 class="text-lg font-bold text-[#6B9BD1] mb-4 text-center">オフ会の様子</h4>
-                                <div class="flex-grow rounded-2xl shadow-inner overflow-hidden mt-4">
-                                    <img src="image/event1.jpg" alt="オフ会の様子 1" class="w-full h-full object-cover">
+                                <div class="flex-grow rounded-2xl shadow-inner overflow-hidden mt-4 aspect-video">
+                                    <img src="image/event1.jpg" alt="オフ会の様子 1" class="w-full h-full object-cover" loading="lazy" width="400" height="300">
                                 </div>
                              </div>
                              <div class="rounded-2xl shadow-lg overflow-hidden bg-white aspect-[4/3]">
-                                 <img src="image/event2.jpg" alt="オフ会の様子 2" class="w-full h-full object-cover">
+                                 <img src="image/event2.jpg" alt="オフ会の様子 2" class="w-full h-full object-cover" loading="lazy" width="400" height="300">
                              </div>
                         </div>
                         <div class="text-left text-gray-700 leading-relaxed space-y-4 bg-white p-8 rounded-2xl shadow-lg">
@@ -917,7 +962,7 @@
                     </div>
                 </div>
                  <div class="text-center mt-8 fade-in">
-                    <img id="private-toggle-img" src="image/hechima.png" alt="もっと詳しく見る" class="mx-auto mb-4 cursor-pointer w-24 h-24 transition-transform duration-300 hover:scale-110">
+                    <img id="private-toggle-img" src="image/hechima.png" alt="もっと詳しく見る" class="mx-auto mb-4 cursor-pointer w-24 h-24 transition-transform duration-300 hover:scale-110" loading="lazy" width="100" height="100">
                     <button id="private-toggle-btn" class="border-2 rounded-full py-2 px-6 transition-all duration-300" style="border-color: #6B9BD1; color: #6B9BD1;">ぬいぬいプライベート</button>
                 </div>
             </div>
